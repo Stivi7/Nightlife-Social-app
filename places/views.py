@@ -15,13 +15,31 @@ def homepage(request):
         'near': 'Tirana'
     })
 
-    
     arr = []
-    for i in venue_search['groups'][0]['items']:
+    itemTips = []
+    itemVenue = {}
+    data = venue_search['groups'][0]['items']
+    
+    
+    for item in data:
+        itemVenue = item['venue']
+        itemTips = item['tips']
         
-        json = {
-            'id': i['venue']['id'],
-            'name': i['venue']['name'],
-        }
-        arr.append(json)
-    return JsonResponse(arr, safe=False)
+        itemTip = {}
+        for tip in itemTips:
+            itemTip = tip
+            
+            json = {
+                'id': itemVenue['id'],
+                'name': itemVenue['name'],
+                'text': itemTip['text']
+            }
+
+            arr.append(json)
+            
+        print(arr)    
+    return JsonResponse(arr, safe=False)  
+        
+         
+    
+    
