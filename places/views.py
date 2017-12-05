@@ -2,44 +2,30 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from foursquare import Foursquare
 import json
-
-
-client = Foursquare(client_id='ZOHSQDAX213QVTFLWXMDQNGQWCZOZIX3SLZKDEZI00H30AHD', 
-                    client_secret='5PBAEWTG1IHDQ52I3ETE14JGV3N2PAYOY0VPTB2U4NNIF2B0')
+from yelpapi import YelpAPI
 
 
 
-def homepage(request):
-    
-    venue_search = client.venues.explore(params={
-        'near': 'Tirana'
-    })
+yelp_api = YelpAPI(client_id='yjbKgmVwUQdd_qmGCHs0zg', client_secret='7NzN5SbUXhqq5Ktqhub7AMkaLwj1E0p7Hrp76gK00UE9bB5EkiwTg3AEVYA3DtTW')
 
+def api(request, place):
+    data = yelp_api.search_query(location=place)
     arr = []
-    itemTips = []
-    itemVenue = {}
-    data = venue_search['groups'][0]['items']
-    
-    
-    for item in data:
-        itemVenue = item['venue']
-        itemTips = item['tips']
-        
-        itemTip = {}
-        for tip in itemTips:
-            itemTip = tip
-            
-            json = {
-                'id': itemVenue['id'],
-                'name': itemVenue['name'],
-                'text': itemTip['text']
-            }
+    for i in data['businesses']:
 
-            arr.append(json)
-            
-        print(arr)    
-    return JsonResponse(arr, safe=False)  
-        
-         
-    
+        json = {
+            'id': i['id'],
+            'name': i['name'],
+            'image': i['image_url'],
+            'location': i['location']['address1'],
+            'city': i['location']['city'],
+            'country': i['location']['country'],
+            'url': i['url'],
+            'phone': i['display_phone'],
+        }
+
+        arr.append(json)
+    return JsonResponse(arr, safe=False)
+
+
     

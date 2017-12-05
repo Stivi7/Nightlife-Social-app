@@ -19,5 +19,5 @@ from places import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.homepage, name='home')
+    url(r'^api/(?P<place>.*)/$', views.api, name='api')
 ]
