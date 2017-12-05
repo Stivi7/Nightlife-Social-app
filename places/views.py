@@ -28,4 +28,6 @@ def api(request, place):
     return JsonResponse(arr, safe=False)
 
 
-    
+
+def home(request):
+    return render(request, 'places/home.html')

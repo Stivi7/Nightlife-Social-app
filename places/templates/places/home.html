@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="wrapper container" style="width: 50%">
+       <div class="text-center">
+           <h1>Plans tonight?</h1>
+           <p>Enter your city name below
+                to see chilling places</p>
+       </div>
+        <div>
+
+                <input id="searchBar" class="form-control mr-sm-2" type="text" placeholder="Enter a city name...">
+                <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
+
+        <div id="places">
+
+        </div>
+    </div>
+{% endblock %}

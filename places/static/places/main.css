@@ -1,0 +1,11 @@
+.wrapper {
+    padding: 20px;
+    background-color: white !important;
+    box-shadow: 0 0 20px 0 #aaa;
+    margin: auto !important;
+    width: auto;
+}
+
+body {
+    background-color: #36E37C;
+}
