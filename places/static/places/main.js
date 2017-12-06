@@ -22,8 +22,8 @@ var places = document.getElementById("places")
 
 
     function build(data) {
-       var json = JSON.parse(data)
-        json.forEach(function(obj) {
+       // var json = JSON.parse(data)
+        data.forEach(function(obj) {
             var block = createBlock(obj)
             places.appendChild(block)
         })
@@ -36,11 +36,20 @@ var places = document.getElementById("places")
         var div = document.createElement('div');
         var img = document.createElement('img');
         var h5 = document.createElement('h5');
+        var address = document.createElement('address');
+
+        // div.setAttribute('style', 'width: 30%');
         img.setAttribute('src', obj.image);
-        h5.setAttribute(obj.name);
-        div.appendChild(img);
+        img.setAttribute('style', 'width: 80px; height: 80px')
+        address.innerHTML ="Address: " + obj.city
+            + obj.location + "<br/>"
+            + "Phone: " + obj.phone;
+        h5.innerHTML = obj.name;
         div.appendChild(h5);
-        console.log(obj)
+        div.appendChild(img);
+        div.appendChild(address)
+
+        return div;
     }
 
 

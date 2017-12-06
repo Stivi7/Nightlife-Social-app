@@ -9,3 +9,9 @@
 body {
     background-color: #36E37C;
 }
+
+#places div {
+    border-width: 1px;
+    border-color: black;
+    padding-top: 10px;
+}
