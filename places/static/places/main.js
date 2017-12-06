@@ -25,6 +25,7 @@ var places = document.getElementById("places")
         data.forEach(function(obj) {
             var block = createBlock(obj)
             places.appendChild(block)
+            sessionStorage.setItem('data', block);
         })
 
     }
@@ -56,11 +57,15 @@ var places = document.getElementById("places")
 
     //create button for 'going' 'not going'
     function createButton(obj) {
-        var btn = document.createElement('button')
+        var btn = document.createElement('button');
+        var form = document.createElement('form');
+        form.setAttribute('method', 'get');
         btn.setAttribute('class', 'btn btn-default btn-outline-primary');
-        btn.setAttribute('id', obj.id);
+        btn.setAttribute('value', obj.id);
+        btn.setAttribute('type', 'submit');
         btn.innerHTML = '0';
-        return btn;
+        form.appendChild(btn);
+        return form;
     }
 
     //create the div with needed info
@@ -74,7 +79,7 @@ var places = document.getElementById("places")
         var button = createButton(obj);
         span.innerHTML = 'Going';
         div.setAttribute('class', 'data-div');
-        // divrow.setAttribute('class', 'row');
+
         divrow.appendChild(h5);
         divrow.appendChild(span);
         divrow.appendChild(button);
