@@ -73,14 +73,15 @@ var places = document.getElementById("places")
         var address = createAddress(obj);
         var button = createButton(obj);
         span.innerHTML = 'Going';
-        divrow.setAttribute('class', 'row');
+        div.setAttribute('class', 'data-div');
+        // divrow.setAttribute('class', 'row');
         divrow.appendChild(h5);
         divrow.appendChild(span);
         divrow.appendChild(button);
+
         div.appendChild(divrow);
         div.appendChild(img);
         div.appendChild(address);
-
 
         return div;
     }
