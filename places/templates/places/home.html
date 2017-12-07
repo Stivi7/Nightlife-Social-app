@@ -4,7 +4,16 @@
 
     <div class="wrapper container" style="width: 50%">
     <div class="pull-right">
+        {% if not user.is_authenticated %}
+        <a href="{% url 'social:begin' 'twitter' %}">
         <button class="btn btn-default btn-primary">Log in with Twitter</button>
+        </a>
+            {% else %}
+            <h2>Welcome {{ user.username }}</h2>
+            <a href="{% url 'logout' %}">
+            <button class="btn btn-default btn-danger">Logout</button>
+            </a>
+        {% endif %}
     </div>
        <div class="text-center">
            <h1>Plans tonight?</h1>
