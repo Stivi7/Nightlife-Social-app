@@ -31,3 +31,14 @@
         </div>
     </div>
 {% endblock %}
+{% block js %}
+    dataDiv.forEach(function(div) {
+        {% for c in checkin %}
+        {% if c.status == True %}
+            checkBtn.innerHTML = checkBtn.innerHTML + 1
+            {% else %}
+            checkBtn.innerHTML = checkBtn.innerHTML - 1
+        {% endif %}
+        {% endfor %}
+    })
+{% endblock %}

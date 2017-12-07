@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
-var searchButton = $("#searchBtn")
-var bar = document.getElementById("searchBar")
-var places = document.getElementById("places")
+    var searchButton = $("#searchBtn")
+    var bar = document.getElementById("searchBar")
+    var places = document.getElementById("places")
+    var dataDiv = document.querySelectorAll(".data-div")
+    var checkBtn = document.querySelectorAll(".check")
+
 
 
     searchButton.click(search)
@@ -59,8 +62,11 @@ var places = document.getElementById("places")
     function createButton(obj) {
         var btn = document.createElement('button');
         var form = document.createElement('form');
+
         form.setAttribute('method', 'get');
-        btn.setAttribute('class', 'btn btn-default btn-outline-primary');
+        form.setAttribute('action', '/check/');
+        btn.setAttribute('class', 'btn btn-default btn-outline-primary check');
+        btn.setAttribute('name', 'id');
         btn.setAttribute('value', obj.id);
         btn.setAttribute('type', 'submit');
         btn.innerHTML = '0';
@@ -90,6 +96,8 @@ var places = document.getElementById("places")
 
         return div;
     }
+
+
 
 
     });
