@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from foursquare import Foursquare
 import json
@@ -41,8 +41,8 @@ def home(request):
 def checkin(request):
 
     id = request.GET['id']
-    created = CheckIn.objects.create(buttonId=id, status=True, owner=request.user)
-    created.save()
-    all = CheckIn.objects.all()
-    return render(request, 'places/home.html', {'check': all})
+    c, created = CheckIn.objects.get_or_create(buttonId=id, status=True, owner=request.user)
+    c.save()
+
+    return redirect('home')
 
