@@ -38,7 +38,7 @@
 
     {% for i in check %}
         status = true;
-        {% if i.status == False %}
+        {% if i.status == False and i.owner == request.user %}
             status = false;
         {% endif %}
         state.push({
@@ -46,5 +46,6 @@
             status: status,
             owner: '{{ i.owner }}'
         });
+        console.log(status)
     {% endfor %}
 {% endblock %}
