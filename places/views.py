@@ -37,7 +37,9 @@ def home(request):
     all = CheckIn.objects.all()
     return render(request, 'places/home.html', {'check': all})
 
-@login_required
+@login_required(login_url='https://api.twitter.com/oauth/authenticate?oauth_token=RGP-'
+                          '1AAAAAAA3ht3AAABYDgXdLU&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2'
+                          'Foauth%2Fcomplete%2Ftwitter%2F%3Fredirect_state%3D5Rl65p7gK93rfcseIjnfFR6hXwkjOYho')
 def checkin(request):
 
     id = request.GET['id']
