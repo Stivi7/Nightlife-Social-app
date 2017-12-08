@@ -1,14 +1,12 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-    var searchButton = $("#searchBtn")
-    var bar = document.getElementById("searchBar")
-    var places = document.getElementById("places")
-    var dataDiv = document.querySelectorAll(".data-div")
-    var checkBtn = document.querySelectorAll(".check")
+    var searchButton = $("#searchBtn");
+    var bar = document.getElementById("searchBar");
+    var places = document.getElementById("places");
+    var dataDiv;
+    var checkBtn;
 
-
-
-    searchButton.click(search)
+    searchButton.click(search);
 
     function search() {
         var country = bar.value
@@ -22,15 +20,16 @@ $(document).ready(function() {
 
 
     function build(data) {
-       // var json = JSON.parse(data)
+        // var json = JSON.parse(data)
         places.innerHTML = "";
 
-        data.forEach(function(obj) {
+        data.forEach(function (obj) {
             var block = createBlock(obj)
             places.appendChild(block)
             sessionStorage.setItem('data', block);
         })
 
+        handleStatus();
     }
 
     // create imasge element
@@ -52,7 +51,7 @@ $(document).ready(function() {
     //location address
     function createAddress(obj) {
         var address = document.createElement('address');
-        address.innerHTML ="Address: " + obj.city
+        address.innerHTML = "Address: " + obj.city
             + obj.location + "<br/>"
             + "Phone: " + obj.phone;
         return address;
@@ -62,7 +61,7 @@ $(document).ready(function() {
     function createButton(obj) {
         var btn = document.createElement('button');
         var form = document.createElement('form');
-
+        form.name = 'nightlife';
         form.setAttribute('method', 'get');
         form.setAttribute('action', '/check/');
         btn.setAttribute('class', 'btn btn-default btn-outline-primary check');
@@ -97,7 +96,20 @@ $(document).ready(function() {
         return div;
     }
 
+    function handleStatus() {
+        console.log(status);
+        checkBtn = document.querySelectorAll('.check');
 
-
-
-    });
+        state.forEach(function (s) {
+            checkBtn.forEach(function (c) {
+                if (c.value === s.id) {
+                    if (status) {
+                        c.innerHTML = Number(c.innerHTML) + 1;
+                    } else {
+                        c.innerHTML = Number(c.innerHTML) - 1;
+                    }
+                }
+            });
+        });
+    }
+});

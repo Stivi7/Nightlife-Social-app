@@ -34,14 +34,15 @@ def api(request, place):
 
 
 def home(request):
-    return render(request, 'places/home.html')
+    all = CheckIn.objects.all()
+    return render(request, 'places/home.html', {'check': all})
 
 @login_required
 def checkin(request):
 
     id = request.GET['id']
-    c = CheckIn.objects.create(buttonId=id, status=True, owner=request.user)
-    c.save()
-    filter_by_user = CheckIn.objects.filter(owner=request.user)
-    return render(request, 'places/home.html', {'checkin': filter_by_user})
+    created = CheckIn.objects.create(buttonId=id, status=True, owner=request.user)
+    created.save()
+    all = CheckIn.objects.all()
+    return render(request, 'places/home.html', {'check': all})
 

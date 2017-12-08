@@ -32,13 +32,19 @@
     </div>
 {% endblock %}
 {% block js %}
-    dataDiv.forEach(function(div) {
-        {% for c in checkin %}
-        {% if c.status == True %}
-            checkBtn.innerHTML = checkBtn.innerHTML + 1
-            {% else %}
-            checkBtn.innerHTML = checkBtn.innerHTML - 1
+
+    status = false;
+    state = [];
+
+    {% for i in check %}
+        status = true;
+        {% if i.status == False %}
+            status = false;
         {% endif %}
-        {% endfor %}
-    })
+        state.push({
+            id: '{{ i.buttonId }}',
+            status: status,
+            owner: '{{ i.owner }}'
+        });
+    {% endfor %}
 {% endblock %}
