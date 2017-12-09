@@ -5,6 +5,8 @@ $(document).ready(function () {
     var places = document.getElementById("places");
     var dataDiv;
     var checkBtn;
+    var sessionDiv = document.querySelector(".session");
+
 
     searchButton.click(search);
 
@@ -20,20 +22,25 @@ $(document).ready(function () {
 
 
     function build(data) {
-        // var json = JSON.parse(data)
         places.innerHTML = "";
-
+        var sessionData;
         data.forEach(function (obj) {
-            var block = createBlock(obj)
-            places.appendChild(block)
-            sessionStorage.setItem('data', block);
+            var block = createBlock(obj);
+            places.appendChild(block);
+            sessionStorage.setItem('data', places.innerHTML)
         })
 
+
+        //successfully stored in session storage
+        sessionData = sessionStorage.getItem('data');
+        console.log(sessionData)
+        sessionDiv.innerHTML = sessionData
         handleStatus();
-        sessionStorage.getItem('data');
+
     }
 
-    // create imasge element
+
+    // create image element
     function createImage(obj) {
         var img = document.createElement('img');
         img.setAttribute('src', obj.image);
@@ -98,7 +105,7 @@ $(document).ready(function () {
     }
 
     function handleStatus() {
-        console.log(status);
+        // console.log(status);
         checkBtn = document.querySelectorAll('.check');
 
         state.forEach(function (s) {
@@ -113,4 +120,5 @@ $(document).ready(function () {
             });
         });
     }
+
 });

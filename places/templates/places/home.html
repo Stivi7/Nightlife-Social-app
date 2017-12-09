@@ -25,10 +25,12 @@
                 <input id="searchBar" class="form-control mr-sm-2" type="text" placeholder="Enter a city name...">
                 <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </div>
+        <div class="session">
+            <div id="places">
 
-        <div id="places">
-
+            </div>
         </div>
+
     </div>
 {% endblock %}
 {% block js %}
@@ -38,7 +40,7 @@
 
     {% for i in check %}
         status = true;
-        {% if i.status == False and i.owner == request.user %}
+        {% if i.status == False %}
             status = false;
         {% endif %}
         state.push({
