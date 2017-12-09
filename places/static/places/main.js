@@ -6,6 +6,8 @@ $(document).ready(function () {
     var dataDiv;
     var checkBtn;
     var sessionDiv = document.querySelector(".session");
+    var sessionData;
+
 
 
     searchButton.click(search);
@@ -23,20 +25,13 @@ $(document).ready(function () {
 
     function build(data) {
         places.innerHTML = "";
-        var sessionData;
         data.forEach(function (obj) {
             var block = createBlock(obj);
             places.appendChild(block);
+            //successfully stored in session storage
             sessionStorage.setItem('data', places.innerHTML)
         })
-
-
-        //successfully stored in session storage
-        sessionData = sessionStorage.getItem('data');
-        console.log(sessionData)
-        sessionDiv.innerHTML = sessionData
         handleStatus();
-
     }
 
 
@@ -120,5 +115,7 @@ $(document).ready(function () {
             });
         });
     }
-
+    sessionData = sessionStorage.getItem('data');
+    sessionDiv.innerHTML = sessionData;
+    handleStatus();
 });
