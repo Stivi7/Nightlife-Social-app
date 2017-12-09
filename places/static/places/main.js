@@ -30,6 +30,7 @@ $(document).ready(function () {
         })
 
         handleStatus();
+        sessionStorage.getItem('data');
     }
 
     // create imasge element

@@ -43,8 +43,18 @@ def home(request):
 def checkin(request):
 
     id = request.GET['id']
-    c, created = CheckIn.objects.get_or_create(buttonId=id, status=True, owner=request.user)
+    c, created = CheckIn.objects.get_or_create(buttonId=id, owner=request.user)
     c.save()
+
+
+    if (c.status == True and c.owner == request.user):
+        c.status = False
+        c.save()
+
+    elif (c.status == False and c.owner == request.user):
+        c.status = True
+        c.save()
+
 
     return redirect('home')
 
