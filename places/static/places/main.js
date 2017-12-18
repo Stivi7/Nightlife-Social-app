@@ -31,7 +31,9 @@ $(document).ready(function () {
             //successfully stored in session storage
             sessionStorage.setItem('data', places.innerHTML)
         })
-        handleStatus();
+         // sessionData = sessionStorage.getItem('data');
+
+        // handleStatus();
     }
 
 
@@ -106,7 +108,8 @@ $(document).ready(function () {
         state.forEach(function (s) {
             checkBtn.forEach(function (c) {
                 if (c.value === s.id) {
-                    if (status) {
+                    console.log(c.value)
+                    if (s.status) {
                         c.innerHTML = Number(c.innerHTML) + 1;
                     } else {
                         c.innerHTML = Number(c.innerHTML) - 1;
